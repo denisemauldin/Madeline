@@ -5,7 +5,7 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 Echoe.new('madeline','0.1.0') do |p|
-  p.description 		= "Run Madeline2 on pedigree hash"
+  p.description 		= "Interface to Madeline2"
   p.url				= "http://github.com/dmauldin/madeline"
   p.author			= "Denise Mauldin"
   p.email			= "denise.mauldin@gmail.com"
