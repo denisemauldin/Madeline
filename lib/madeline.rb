@@ -1,11 +1,13 @@
 module Madeline
 
-  def self.included(base)
-    base.extend ClassMethods
-  end
+  VERSION 		= "0.1.0"
 
-  module ClassMethods
+  MADELINE_VERSION	= "2.0"
 
-  end
+  MADELINE_COMMAND	= "lib/madeline2-linux-x86_64"
+
+  MADELINE_ROOT		= File.expand_path(File.dirname(__FILE__))
 
 end
+
+require 'madeline/interface'

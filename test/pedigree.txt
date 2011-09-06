@@ -1,0 +1,9 @@
+FamilyID	IndividualID	Gender	Father	Mother	C1	C2	C3	1739
+madTest	g44	F	.	.	Y	.	.	non
+madTest	g43	M	.	.	.	.	.	.
+madTest	g50	F	g48	g49	.	.	.	.
+madTest	g47	F	g43	g44	Y	.	.	non
+madTest	g51	F	g48	g49	Y	.	.	non
+madTest	g48	M	.	.	.	.	.	.
+madTest	g52	M	g48	g49	Y	Y	Y	non
+madTest	g49	F	g43	g44	Y	.	.	non
