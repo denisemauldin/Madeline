@@ -10,10 +10,6 @@ Echoe.new('madeline','0.1.1') do |p|
   p.author			= "Denise Mauldin"
   p.email			= "denise.mauldin@gmail.com"
   p.ignore_pattern 		= ["tmp/*", "script/*"]
-  p.executables			= PKG_FILES.grep(%r{\Aext\/.}).map { |ext|
-           ext.gsub(%r{\Aext/}, '')
-	   }
-  p.files = PKG_FILES
   p.development_dependencies	= []
 end
 
