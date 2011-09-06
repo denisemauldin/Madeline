@@ -1,4 +1,5 @@
-= Madeline
+Madeline
+========
 
 Rails gem for running madeline on a pedigree hash
 
