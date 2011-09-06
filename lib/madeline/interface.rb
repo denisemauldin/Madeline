@@ -26,22 +26,15 @@ module Madeline
       tempfile.flush
       tempoutfile = Tempfile.new('madeline_output')
       begin
-#        puts "running #{command} --outputprefix #{tempoutfile.path} --outputext .xml #{tempfile.path}"
         log = `#{command} --outputprefix #{tempoutfile.path} --outputext .xml #{tempfile.path}`
-#	puts log.inspect
         unless (log.match(/Pedigree output file is/)) then
 	  raise Error, "Madeline failed to run.  Check Madeline path."
 	end
         filename = "#{tempoutfile.path}.xml"
-#	puts "testing filename #{filename}"
 	if (!File.exists?(filename)) then
 	  raise Error, "Output File doesn't exist."
         end
         f = File.new(filename,"r")
-	#puts "opening results and printing\n"
-        #while line = f.readline
-        #  puts line
-        #end
         return f.read
       rescue Exception
         raise Error, "Madeline failed to run. Tried #{@madeline}"
