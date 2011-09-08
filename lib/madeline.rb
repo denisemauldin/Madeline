@@ -4,9 +4,10 @@ module Madeline
 
   MADELINE_VERSION	= "2.0"
 
-  MADELINE_COMMAND	= "ext/madeline2-linux-x86_64"
-
   MADELINE_ROOT		= File.expand_path(File.dirname(__FILE__))
+
+  MADELINE_COMMAND	= "#{MADELINE_ROOT}/../ext/madeline/madeline2-linux-x86_64"
+
 
 end
 

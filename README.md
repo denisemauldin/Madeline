@@ -13,19 +13,28 @@ sudo gem install madeline
 Usage
 -----
 
-The *Madeline::Interface* has a single method, `draw`, which can be passed a string or an open *IO* object, and returns the Madeline XML. The result is returned as a string, or, if a block is passed, yields as an *IO* object for streaming writes.
+The *Madeline::Interface* has a single method, `draw`, which can be passed a string or an open *IO* object, and returns the Madeline XML. The draw method returns a filename and warnings, or, if a block is passed, yields the file contents and warnings.
 
 <pre>
 require 'rubygems'
 require 'madeline'
-Madeline::Interface.new.draw(File.open('pedigree.txt', 'r'))
+pedigree_filename, warnings = Madeline::Interface.new.draw(File.open('pedigree.txt', 'r'))
+</pre>
+
+<pre>
+require 'rubygems'
+require 'madeline'
+pedigree, warnings = Madeline::Interface.new.draw(File.open('pedigree.txt','r')) { |filehandle, warnings|
+  puts "warnings #{warnings}"
+  pedigree = filehandle.read
+}
 </pre>
 
 When creating a *Madeline::Interface*, you can pass [any options that the madeline2 program accepts](http://eyegene.ophthy.med.umich.edu/madeline/documentation.php) to the interface and they'll be forwarded. For example, to create an embedded result:
 
 <pre>
 artist = Madeline::Interface.new(:embedded => true)
-artist.draw(File.open('pedigree.txt', 'r'))
+pedigree_filename, warnings = artist.draw(File.open('pedigree.txt', 'r'))
 </pre>
 
 The default values of all the madeline2 flags are identical to the command-line version.

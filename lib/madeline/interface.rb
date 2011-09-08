@@ -26,7 +26,8 @@ module Madeline
       tempfile.flush
       tempoutfile = Tempfile.new('madeline_output')
       begin
-        log = `#{command} --outputprefix #{tempoutfile.path} --outputext .xml #{tempfile.path}`
+        log = `#{command} --outputprefix #{tempoutfile.path} --outputext .xml #{tempfile.path} 2>&1`
+
         unless (log.match(/Pedigree output file is/)) then
 	  raise Error, "Madeline failed to run.  Check Madeline path."
 	end
@@ -34,19 +35,27 @@ module Madeline
 	if (!File.exists?(filename)) then
 	  raise Error, "Output File doesn't exist."
         end
-        f = File.new(filename,"r")
-        return f.read
       rescue Exception
-        raise Error, "Madeline failed to run. Tried #{@madeline}"
+	if log.nil? then
+          raise Error, "Madeline failed to run. Tried #{@madeline}"
+	else
+	  raise Error, "Madeline had an error: #{log}"
+	end
       ensure
         tempfile.close!
       end
       unless $?.exitstatus.zero?
-        raise Error, result
+        raise Error, log 
       end
-
-      yield(StringIO.new(result)) if block_given?
-      result
+      warnings = Array.new
+      lines = log.split("\n")
+      lines.each do |line|
+	line.gsub!("\e[0m","") # remove the end color code from madeline2
+        warnings.push(line.match(/Warning:.*/)[0]) if line.match(/Warning:/)
+      end
+      warn = warnings.join("; ")
+      yield(File.new(filename), warn) if block_given?
+      return filename, warn
     end
 
     private
@@ -55,7 +64,14 @@ module Madeline
       options.map do |k, v|
         next if k == 'outputext'
         next if k == 'outputprefix'
-        if (v == true || v == "true")
+	if (k.to_s == 'L')
+	  if v.is_a?(Array)
+	    vals = v.join(" ")
+	    ["-L \"#{vals}\""]
+          else 
+  	    ["-L \"#{v}\""]
+	  end 
+        elsif (v == true || v == "true")
           ["--#{k}"]
         elsif (v.is_a?(Array))
           v.map {|v2| ["--#{k}", v2.to_s]}

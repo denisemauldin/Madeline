@@ -1,4 +1,4 @@
-FamilyID	IndividualID	Gender	Father	Mother	C1	C2	C3	1739
+FamilyID	IndividualID	Gender	Father	Mother	C1	C2	C3	GeneID:1739
 madTest	g44	F	.	.	Y	.	.	non
 madTest	g43	M	.	.	.	.	.	.
 madTest	g50	F	g48	g49	.	.	.	.

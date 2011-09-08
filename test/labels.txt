@@ -1,0 +1,11 @@
+FamilyID	IndividualID	Gender	Father	Mother	cond1	cond2	cond3	geneID:79083
+family1	g44	F	.	.	Y	.	.	non,nfs
+family1	g43	M	.	.	.	.	.	.
+family1	g21	M	.	.	Y	Y	Y	non
+family1	g50	F	g48	g49	.	.	.	.
+family1	g47	F	g43	g44	Y	.	.	nfs,non
+family1	g51	F	g48	g49	Y	.	.	non,nfs
+family1	g48	M	.	.	.	.	.	.
+family1	g56	M	.	.	Y	Y	Y	non,nfs
+family1	g52	M	g48	g49	Y	Y	Y	non,nfs
+family1	g49	F	g43	g44	Y	.	.	non,nfs
