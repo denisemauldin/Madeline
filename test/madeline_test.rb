@@ -17,6 +17,7 @@ class MadelineTest < Test::Unit::TestCase
     pedigree_file, warnings = artist.draw(File.open('test/pedigree.txt','r'))
     pedigree = File.read(pedigree_file)
     assert_equal(@@fixtures["pedigree"], pedigree)
+    File.delete(pedigree_file)
   end
 
   def test_madeline_location
@@ -24,6 +25,7 @@ class MadelineTest < Test::Unit::TestCase
     pedigree_file, warnings = artist.draw(File.open('test/pedigree.txt','r'))
     pedigree = File.read(pedigree_file) 
     assert_equal(@@fixtures["pedigree"], pedigree)
+    File.delete(pedigree_file)
   end
     
   def test_bad_madeline_location
@@ -38,6 +40,7 @@ class MadelineTest < Test::Unit::TestCase
     pedigree_file, warnings = artist.draw(File.open('test/pedigree.txt','r'))
     pedigree = File.read(pedigree_file)
     assert_equal(@@fixtures["arial_out"], pedigree)
+    File.delete(pedigree_file)
   end 
 
   def test_embedded
@@ -45,6 +48,7 @@ class MadelineTest < Test::Unit::TestCase
     pedigree_file, warnings = artist.draw(File.open('test/pedigree.txt','r'))
     pedigree = File.read(pedigree_file)
     assert_equal(@@fixtures["embedded_out"], pedigree)
+    File.delete(pedigree_file)
   end
 
   def test_bad_file_location
@@ -59,6 +63,7 @@ class MadelineTest < Test::Unit::TestCase
     pedigree_file, warnings = artist.draw(File.open('test/labels.txt','r'))
     pedigree = File.read(pedigree_file)
     assert_equal(@@fixtures["single_label_out"], pedigree)
+    File.delete(pedigree_file)
   end
 
   def test_multiple_labels
@@ -66,6 +71,7 @@ class MadelineTest < Test::Unit::TestCase
     pedigree_file, warnings = artist.draw(File.open('test/labels.txt','r'))
     pedigree = File.read(pedigree_file)
     assert_equal(@@fixtures["label_out"], pedigree)
+    File.delete(pedigree_file)
   end
 
   def test_block

@@ -54,7 +54,12 @@ module Madeline
         warnings.push(line.match(/Warning:.*/)[0]) if line.match(/Warning:/)
       end
       warn = warnings.join("; ")
-      yield(File.new(filename), warn) if block_given?
+      if block_given? then
+        f = File.new(filename)
+	contents = f.read
+	File.delete(filename)
+        yield(StringIO.new(contents), warn)
+      end
       return filename, warn
     end
 
