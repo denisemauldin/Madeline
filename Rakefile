@@ -4,7 +4,7 @@ require 'echoe'
 require 'rake/testtask'
 require 'rake/rdoctask'
 
-Echoe.new('madeline','0.1.4') do |p|
+Echoe.new('madeline','0.1.5') do |p|
   p.description 		= "Interface to Madeline2"
   p.url				= "http://github.com/dmauldin/madeline"
   p.author			= "Denise Mauldin"
