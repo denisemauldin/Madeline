@@ -39,7 +39,7 @@ module Madeline
 	if log.nil? then
           raise Error, "Madeline failed to run. Tried #{@madeline}"
 	else
-	  raise Error, "Madeline had an error: #{log}"
+	  raise Error, "Madeline had an error: #{log}.  Tried #{@madeline}"
 	end
       ensure
         tempfile.close!
