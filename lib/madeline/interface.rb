@@ -25,24 +25,26 @@ module Madeline
       end
       tempfile.flush
       tempoutfile = Tempfile.new('madeline_output')
+      if !File.exists?(tempfile.path)
+        raise Error, "Failed to create madeline input file #{tempfile.path}"
+      end
       begin
         log = `#{command} --outputprefix #{tempoutfile.path} --outputext .xml #{tempfile.path} 2>&1`
-
         unless (log.match(/Pedigree output file is/)) then
-	  raise Error, "Madeline failed to run.  Check Madeline path."
+	  raise Error, "Madeline failed to run or had a segmentation fault.  #{command} --outputprefix #{tempoutfile.path} --outputext .xml #{tempfile.path}"
 	end
         filename = "#{tempoutfile.path}.xml"
 	if (!File.exists?(filename)) then
-	  raise Error, "Output File doesn't exist."
+	  raise Error, "Output File doesn't exist. #{filename}   command was : #{command} --outputprefix #{tempoutfile.path} --outputext .xml #{tempfile.path}"
         end
-      rescue Exception
+      rescue 
 	if log.nil? then
-          raise Error, "Madeline failed to run. Tried #{@madeline}"
+          raise Error, "Madeline failed to run. Tried #{@madeline}.  #{$!}"
 	else
-	  raise Error, "Madeline had an error: #{log}.  Tried #{@madeline}"
+	  raise Error, "Madeline had an error: #{log}  Tried #{@madeline}.\n #{$!}\n"
 	end
       ensure
-        tempfile.close!
+#        tempfile.close!
       end
       unless $?.exitstatus.zero?
         raise Error, log 
