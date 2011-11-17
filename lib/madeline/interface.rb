@@ -44,7 +44,7 @@ module Madeline
 	  raise Error, "Madeline had an error: #{log}  Tried #{@madeline}.\n #{$!}\n"
 	end
       ensure
-#        tempfile.close!
+        tempfile.close!
       end
       unless $?.exitstatus.zero?
         raise Error, log 
