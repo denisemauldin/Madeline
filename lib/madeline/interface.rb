@@ -83,7 +83,7 @@ module Madeline
         elsif (v.is_a?(Array))
           v.map {|v2| ["--#{k}", v2.to_s]}
         else
-          ["--#{k}", v.to_s]
+          ["--#{k}", "#{v}"]
         end
       end.flatten
     end
