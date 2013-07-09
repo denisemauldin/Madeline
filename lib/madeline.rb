@@ -1,6 +1,6 @@
 module Madeline
 
-  VERSION 		= "0.1.10"
+  VERSION 		= "0.1.11"
 
   MADELINE_VERSION	= "2.0"
 

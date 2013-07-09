@@ -2,9 +2,9 @@ require 'rubygems'
 require 'rake'
 require 'echoe'
 require 'rake/testtask'
-require 'rake/rdoctask'
+require 'rdoc/task'
 
-Echoe.new('madeline','0.1.10') do |p|
+Echoe.new('madeline','0.1.11') do |p|
   p.description 		= "Interface to Madeline2"
   p.url				= "http://github.com/dmauldin/madeline"
   p.author			= "Denise Mauldin"
